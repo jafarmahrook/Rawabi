@@ -23,14 +23,14 @@ html,
 body,
 #root {
   width: 100%;
-  min-width: 100%;
-  height: 100%;
   min-height: 100%;
   margin: 0;
 }
 
 body {
-  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
   background: var(--green-900);
   color: var(--ink);
   -webkit-tap-highlight-color: transparent;
@@ -49,16 +49,21 @@ button {
 
 .app {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  min-height: 680px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   padding: clamp(14px, 2.2vw, 30px);
+  padding-top: max(clamp(14px, 2.2vw, 30px), env(safe-area-inset-top));
+  padding-bottom: max(clamp(14px, 2.2vw, 30px), env(safe-area-inset-bottom));
+  padding-left: max(clamp(14px, 2.2vw, 30px), env(safe-area-inset-left));
+  padding-right: max(clamp(14px, 2.2vw, 30px), env(safe-area-inset-right));
   isolation: isolate;
-  overflow: hidden;
 }
 
 .ambient {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: -2;
   background:
@@ -134,7 +139,8 @@ button {
   grid-template-rows: auto 1fr;
   gap: clamp(12px, 1.5vw, 18px);
   width: min(1380px, 100%);
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   margin: 0 auto;
 }
 
@@ -394,11 +400,12 @@ button {
   font-size: clamp(26px, 3.5vw, 44px);
   line-height: 1.1;
   font-weight: 900;
-  white-space: nowrap;
+  text-wrap: balance;
 }
 
 .heroHeader h2 .highlightTime {
   color: var(--gold);
+  white-space: nowrap;
 }
 
 .heroLine {
@@ -406,7 +413,7 @@ button {
   color: var(--green-800);
   font-size: clamp(15px, 1.8vw, 20px);
   font-weight: 800;
-  white-space: nowrap;
+  text-wrap: pretty;
 }
 
 .gameGuide {
@@ -1407,53 +1414,6 @@ button {
   background: radial-gradient(circle at 45% 28%, #fff38d, #e4c239 56%, #b58a23 100%);
 }
 
-.productPack.jameed.brandBuilt {
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent 34%),
-    linear-gradient(180deg, #f5e8c9, #ddc494);
-}
-
-.productPack.jameed .packCap {
-  background: repeating-linear-gradient(90deg, rgba(15, 74, 43, 0.9) 0 7px, rgba(255, 250, 240, 0.82) 7px 14px);
-}
-
-.productPack.jameed .packWindow {
-  background:
-    radial-gradient(ellipse at 50% 42%, rgba(255, 255, 255, 0.95) 0 34%, transparent 35%),
-    linear-gradient(180deg, rgba(146, 110, 61, 0.26), rgba(255, 255, 255, 0.18));
-}
-
-.productPack.cookies.brandBuilt {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.36), transparent 20%),
-    linear-gradient(180deg, #8a624f, #5c342a 54%, #3e261f);
-  border-color: rgba(77, 43, 31, 0.34);
-}
-
-.productPack.cookies .packCap {
-  height: 30px;
-  background: linear-gradient(90deg, #f4f0e6, #bfb8aa, #f4f0e6);
-}
-
-.productPack.cookies .packLabel {
-  background: rgba(255, 250, 240, 0.86);
-  color: var(--green-900);
-}
-
-.productPack.cookies .packWindow {
-  gap: 9px;
-  background: rgba(39, 22, 17, 0.42);
-}
-
-.productPack.cookies .packWindow i {
-  width: 24px;
-  height: 24px;
-  background:
-    radial-gradient(circle at 68% 32%, #2b1812 0 3px, transparent 4px),
-    radial-gradient(circle at 34% 62%, #2b1812 0 3px, transparent 4px),
-    #7a4b32 !important;
-}
-
 .productPack.vinegar.brandBuilt {
   width: min(100%, 176px);
   background:
@@ -1753,83 +1713,6 @@ button {
   box-shadow: inset -4px -5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.rawabiMark {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 54px;
-  height: 54px;
-  flex: 0 0 auto;
-}
-
-.rawabiMark.small {
-  width: 32px;
-  height: 32px;
-}
-
-.rawabiMark b {
-  position: relative;
-  z-index: 2;
-  color: var(--gold-soft);
-  font-size: 36px;
-  line-height: 1;
-  font-weight: 950;
-}
-
-.rawabiMark.small b {
-  font-size: 20px;
-}
-
-.leafA,
-.leafB,
-.seedA {
-  position: absolute;
-  border-radius: 999px 999px 999px 0;
-  transform-origin: center;
-}
-
-.leafA {
-  width: 28px;
-  height: 14px;
-  right: 4px;
-  bottom: 7px;
-  background: #f0cc62;
-  transform: rotate(-36deg);
-}
-
-.leafB {
-  width: 26px;
-  height: 13px;
-  left: 5px;
-  bottom: 8px;
-  background: #2b8c4a;
-  transform: rotate(-142deg);
-}
-
-.seedA {
-  width: 12px;
-  height: 22px;
-  left: 13px;
-  top: 6px;
-  background: #f1d9a6;
-  transform: rotate(22deg);
-}
-
-.rawabiMark.small .leafA {
-  width: 16px;
-  height: 8px;
-}
-
-.rawabiMark.small .leafB {
-  width: 15px;
-  height: 8px;
-}
-
-.rawabiMark.small .seedA {
-  width: 7px;
-  height: 12px;
-}
-
 .emojiGlyph {
   position: relative;
   display: grid;
@@ -1861,41 +1744,68 @@ button {
   to { transform: translateY(-8px); }
 }
 
-@media (max-width: 1040px) {
+/* ============================================================
+   RESPONSIVE — flow model for tablets & phones (never clip)
+   On large landscape screens the layout fills one screen.
+   On any smaller / portrait device it flows and the page
+   scrolls instead of cutting content off.
+   ============================================================ */
+
+/* Shared: every non-large screen flows naturally. */
+@media (max-width: 1199px), (orientation: portrait) {
   .app {
-    min-height: 640px;
-    padding: 10px;
+    padding: clamp(10px, 1.6vw, 18px);
+    padding-top: max(clamp(10px, 1.6vw, 18px), env(safe-area-inset-top));
+    padding-bottom: max(clamp(10px, 1.6vw, 18px), env(safe-area-inset-bottom));
   }
 
+  .gameShell {
+    flex: 1 0 auto;
+    grid-template-rows: auto auto;
+  }
+
+  /* let panels grow with their content; the page scrolls if needed */
+  .heroPanel,
+  .showcasePanel,
+  .taskPanel,
+  .resultPanel,
+  .promoPanel,
+  .startLayout {
+    overflow: visible;
+  }
+}
+
+/* ---- Landscape tablets (≈901–1199px): keep 3 columns, tuned ---- */
+@media (min-width: 901px) and (max-width: 1199px) and (orientation: landscape) {
   .brandHeader {
     grid-template-columns: auto 1fr auto;
     min-height: 70px;
   }
 
   .brandPromise {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .playLayout {
-    grid-template-columns: 126px minmax(0, 1fr) minmax(278px, 0.86fr);
-    gap: 10px;
+    grid-template-columns: 132px minmax(0, 1.05fr) minmax(286px, 0.9fr);
+    gap: 12px;
   }
 
   .scoreRail {
-    padding: 8px;
+    padding: 10px;
   }
 
   .timer {
-    width: 104px;
-    height: 104px;
+    width: 96px;
+    height: 96px;
   }
 
   .timer span {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .scoreRail .stat {
-    min-height: 64px;
+    min-height: 58px;
     padding: 8px;
   }
 
@@ -1904,16 +1814,20 @@ button {
   }
 
   .taskPanel {
-    padding: 14px;
+    padding: 16px;
   }
 
   .productStage {
-    grid-template-columns: minmax(190px, 0.9fr) minmax(160px, 0.7fr);
-    gap: 12px;
+    grid-template-columns: minmax(176px, 0.9fr) minmax(150px, 0.7fr);
+    gap: 14px;
   }
 
   .productPack {
-    height: 246px;
+    height: clamp(196px, 30vh, 280px);
+  }
+
+  .productPack.cutout3d .productCutout {
+    max-height: clamp(180px, 30vh, 260px);
   }
 
   .ingredientBoard {
@@ -1922,18 +1836,17 @@ button {
   }
 
   .ingredientTile {
-    grid-template-rows: 40px auto;
-    min-height: 74px;
+    min-height: 78px;
   }
 
   .emojiGlyph {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
   }
 
   .recipeSlot {
-    min-height: 60px;
+    min-height: 58px;
     grid-template-columns: 44px minmax(0, 1fr);
   }
 
@@ -1942,40 +1855,50 @@ button {
   }
 }
 
-@media (max-width: 860px), (orientation: portrait) {
-  body {
-    overflow: auto;
-  }
-
-  .app {
-    height: auto;
-    min-height: 100vh;
-  }
-
+/* ---- Portrait tablets & narrow screens: single-column stack ---- */
+@media (orientation: portrait), (max-width: 900px) {
   .gameShell,
   .startLayout,
-  .playLayout {
-    display: grid;
+  .playLayout,
+  .finishLayout {
     grid-template-columns: 1fr;
   }
 
   .finishLayout {
-    padding: 16px;
-    grid-template-columns: 1fr;
+    gap: clamp(14px, 2vw, 22px);
   }
 
   .heroLayoutSplit {
     grid-template-columns: 1fr;
+    gap: clamp(16px, 4vh, 32px);
   }
 
   .finishStats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .brandHeader {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
+    gap: 4px;
+    padding: 10px 48px;
+  }
+
+  .brandHeader h1 {
+    font-size: clamp(22px, 5vw, 32px);
+  }
+
+  .brandPromise {
+    font-size: 13px;
+  }
+
+  .brandLockup {
+    justify-self: center;
+  }
+
+  .brandPromise {
+    justify-self: center;
   }
 
   .adminReset {
@@ -1984,52 +1907,125 @@ button {
     left: 8px;
   }
 
-  .brandPromise {
-    justify-self: center;
-  }
-
-  .heroPanel h2,
-  .resultPanel h2 {
-    font-size: 42px;
-  }
-
+  /* score rail becomes a horizontal top bar */
   .scoreRail {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
     gap: 8px;
   }
-  
+
   .scoreRail > * {
     flex: 1 1 calc(33.333% - 8px);
-    min-width: 100px;
+    min-width: 90px;
   }
-  
+
   .scoreRail .timer {
     flex: 1 1 100%;
-    margin-bottom: 8px;
-  }
-  
-  .scoreRail .endGameBtn {
-    flex: 1 1 100%;
-    margin-top: 8px;
+    margin: 0 auto 4px;
   }
 
-  .timer {
-    width: 88px;
-    height: 88px;
+  /* stats + multiplier share one tidy row */
+  .scoreRail .stat,
+  .scoreRail .multiplier {
+    flex: 1 1 calc(25% - 6px);
+    min-height: 50px;
   }
 
-  .timer span {
+  .scoreRail .multiplier {
     font-size: 26px;
   }
 
+  .scoreRail .endGameBtn {
+    flex: 1 1 100%;
+    margin-top: 2px;
+    min-height: 42px;
+  }
+
+  .timer {
+    width: 82px;
+    height: 82px;
+  }
+
+  .timer span {
+    font-size: 28px;
+  }
+
+  /* keep the product image beside its recipe to save vertical space */
   .productStage {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: clamp(12px, 2.5vw, 22px);
+  }
+
+  .productPack {
+    height: clamp(170px, 24vh, 240px);
+  }
+
+  .productPack.cutout3d .productCutout {
+    max-height: clamp(160px, 22vh, 230px);
+  }
+
+  .recipeSlot {
+    min-height: 56px;
   }
 
   .ingredientBoard {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .ingredientTile {
+    min-height: 82px;
+  }
+}
+
+/* ---- Small phones ---- */
+@media (max-width: 600px) {
+  .finishStats {
+    grid-template-columns: 1fr;
+  }
+
+  .heroHeader h2,
+  .resultPanel h2 {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .heroLine {
+    font-size: 15px;
+  }
+
+  .scoreRail .stat,
+  .scoreRail .multiplier {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .productStage {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .productPack {
+    height: clamp(200px, 40vw, 260px);
+  }
+
+  .recipeSlots {
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .ingredientTile {
+    min-height: 80px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ingredientBoard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scoreRail > * {
+    flex: 1 1 100%;
   }
 }

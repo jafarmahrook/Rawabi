@@ -30,17 +30,6 @@ type IngredientId =
   | "cherry"
   | "honey";
 
-type ProductId =
-  | "dogga"
-  | "wholeWheatFlour"
-  | "makdous"
-  | "sheepGhee"
-  | "jameed"
-  | "cookies"
-  | "granola"
-  | "vinegar"
-  | "jam";
-
 type Ingredient = {
   id: IngredientId;
   name: string;
@@ -502,8 +491,6 @@ type StartProps = {
 };
 
 function StartScreen({ playerName, setPlayerName, highScore, sortedResults, startGame }: StartProps) {
-  const sampleProducts = ["dogga", "wholeWheatFlour", "makdous", "sheepGhee", "granola"] as ProductId[];
-
   return (
     <div className="startLayout">
       <section className="heroPanel">
@@ -674,6 +661,8 @@ function PlayScreen({
               className={`ingredientTile ${picked ? "picked" : ""} ${wrong ? "wrong" : ""}`}
               type="button"
               key={ingredientId}
+              aria-pressed={picked}
+              aria-label={ingredient.name}
               onClick={() => onIngredient(ingredientId)}
             >
               <IngredientGlyph ingredient={ingredient} />
@@ -854,17 +843,6 @@ function IngredientGlyph({ ingredient }: { ingredient: Ingredient }) {
     <i className="emojiGlyph" style={{ "--tone": ingredient.tone } as CSSProperties}>
       <FluentEmoji emoji={ingredient.icon} type="3d" />
     </i>
-  );
-}
-
-function RawabiMark({ small = false }: { small?: boolean }) {
-  return (
-    <div className={`rawabiMark ${small ? "small" : ""}`} aria-label="Rawabi Farah inspired mark">
-      <span className="leafA" />
-      <span className="leafB" />
-      <span className="seedA" />
-      <b>ف</b>
-    </div>
   );
 }
 
