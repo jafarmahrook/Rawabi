@@ -108,8 +108,8 @@ const products: Product[] = [
     color: "#0f653c",
     accent: "#b44931",
     ingredients: ["eggplant", "oil", "pepper"],
-    image: "/brand/products/makdous.jpg",
-    cutout: "/brand/products/makdous-cutout.png",
+    image: "brand/products/makdous.jpg",
+    cutout: "brand/products/makdous-cutout.png",
     imageMode: "scene",
     icon: "🍆",
   },
@@ -123,8 +123,8 @@ const products: Product[] = [
     color: "#f2d24d",
     accent: "#0f4a2b",
     ingredients: ["milk", "churn", "salt"],
-    image: "/brand/products/sheepGhee.jpg",
-    cutout: "/brand/products/sheepGhee-cutout.png",
+    image: "brand/products/sheepGhee.jpg",
+    cutout: "brand/products/sheepGhee-cutout.png",
     imageMode: "scene",
     icon: "🐄",
   },
@@ -138,8 +138,8 @@ const products: Product[] = [
     color: "#7b3b2f",
     accent: "#2f8b45",
     ingredients: ["oats", "dates", "nuts"],
-    image: "/brand/products/granola.jpg",
-    cutout: "/brand/products/granola-cutout.png",
+    image: "brand/products/granola.jpg",
+    cutout: "brand/products/granola-cutout.png",
     imageMode: "scene",
     icon: "🌾",
   },
@@ -153,8 +153,8 @@ const products: Product[] = [
     color: "#af7431",
     accent: "#0f4a2b",
     ingredients: ["vinegarBase", "ginger", "garlic"],
-    image: "/brand/products/vinegar.jpg",
-    cutout: "/brand/products/vinegar-cutout.png",
+    image: "brand/products/vinegar.jpg",
+    cutout: "brand/products/vinegar-cutout.png",
     imageMode: "scene",
     icon: "🌵",
   },
@@ -168,8 +168,8 @@ const products: Product[] = [
     color: "#9d263a",
     accent: "#b48b46",
     ingredients: ["strawberry", "cherry", "honey"],
-    image: "/brand/products/jam.jpg",
-    cutout: "/brand/products/jam-cutout.png",
+    image: "brand/products/jam.jpg",
+    cutout: "brand/products/jam-cutout.png",
     imageMode: "scene",
     icon: "🍓",
   },
@@ -183,8 +183,8 @@ const products: Product[] = [
     color: "#e8dcc0",
     accent: "#0f653c",
     ingredients: ["wheat", "mill", "stone"],
-    image: "/brand/products/flour.jpg",
-    cutout: "/brand/products/flour-cutout.png",
+    image: "brand/products/flour.jpg",
+    cutout: "brand/products/flour-cutout.png",
     imageMode: "scene",
     icon: "🍞",
   },
@@ -198,8 +198,8 @@ const products: Product[] = [
     color: "#c69b56",
     accent: "#435229",
     ingredients: ["wheat", "sun", "mill"],
-    image: "/brand/products/freekeh.jpg",
-    cutout: "/brand/products/freekeh-cutout.png",
+    image: "brand/products/freekeh.jpg",
+    cutout: "brand/products/freekeh-cutout.png",
     imageMode: "scene",
     icon: "🌾",
   },
@@ -213,8 +213,8 @@ const products: Product[] = [
     color: "#4e3629",
     accent: "#d69a47",
     ingredients: ["wheat", "cocoa", "mill"],
-    image: "/brand/products/barleyCoffee.jpg",
-    cutout: "/brand/products/barleyCoffee-cutout.png",
+    image: "brand/products/barleyCoffee.jpg",
+    cutout: "brand/products/barleyCoffee-cutout.png",
     imageMode: "scene",
     icon: "☕",
   },
@@ -228,8 +228,8 @@ const products: Product[] = [
     color: "#6b7a2c",
     accent: "#391f16",
     ingredients: ["olive", "yogurt", "sun"],
-    image: "/brand/products/stuffedOlives.jpg",
-    cutout: "/brand/products/stuffedOlives-cutout.png",
+    image: "brand/products/stuffedOlives.jpg",
+    cutout: "brand/products/stuffedOlives-cutout.png",
     imageMode: "scene",
     icon: "🫒",
   }
@@ -555,7 +555,7 @@ function StartScreen({ playerName, setPlayerName, highScore, sortedResults, star
       <aside className="showcasePanel promoTheme">
         <div className="promoContent">
           <div className="promoLogoBox">
-            <img src="/brand/products/logo-full.png" alt="روابي فرح" />
+            <img src="brand/products/logo-full.png" alt="روابي فرح" />
           </div>
           <div className="promoTextContent">
             <h3 className="sectionTitle">منتجات روابي فرح</h3>
@@ -713,7 +713,7 @@ function FinishScreen({ result, newRecord, sortedResults, highScore, startGame, 
       <aside className="promoPanel">
         <div className="promoContent">
           <div className="promoLogoBox">
-            <img src="/brand/products/logo-full.png" alt="روابي فرح" />
+            <img src="brand/products/logo-full.png" alt="روابي فرح" />
           </div>
           <h3>من البذرة الأصيلة إلى المائدة</h3>
           <p>
@@ -849,7 +849,7 @@ function IngredientGlyph({ ingredient }: { ingredient: Ingredient }) {
 function OfficialLogo({ small = false }: { small?: boolean }) {
   return (
     <span className={`officialLogo ${small ? "small" : ""}`}>
-      <img src="/brand/products/logo-full.png" alt="Rawabi Farah" draggable={false} />
+      <img src="brand/products/logo-full.png" alt="Rawabi Farah" draggable={false} />
     </span>
   );
 }

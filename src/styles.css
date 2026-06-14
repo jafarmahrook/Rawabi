@@ -69,7 +69,7 @@ button {
   background:
     linear-gradient(130deg, rgba(12, 50, 31, 0.9), rgba(18, 63, 40, 0.78) 42%, rgba(123, 59, 47, 0.52)),
     linear-gradient(0deg, rgba(81, 51, 31, 0.86) 0%, rgba(122, 89, 49, 0.72) 23%, rgba(231, 189, 103, 0.32) 47%, rgba(32, 75, 44, 0.74) 100%),
-    url("/brand/products/wheat-field.png") center / cover no-repeat;
+    url("../brand/products/wheat-field.png") center / cover no-repeat;
 }
 
 .ambient::before {
@@ -314,7 +314,7 @@ button {
   overflow: hidden;
   background:
     linear-gradient(105deg, rgba(255, 250, 240, 0.98) 0%, rgba(248, 238, 209, 0.95) 52%, rgba(217, 161, 65, 0.34) 100%),
-    url("/brand/products/hero-field-products.png") left bottom / min(52%, 520px) auto no-repeat;
+    url("../brand/products/hero-field-products.png") left bottom / min(52%, 520px) auto no-repeat;
 }
 
 .heroTopRightLogo {
@@ -613,13 +613,13 @@ button {
   padding: 18px;
   background:
     linear-gradient(180deg, rgba(255, 250, 240, 0.94), rgba(246, 232, 199, 0.9)),
-    url("/brand/products/seed-bank-shelf.png") center top / cover no-repeat;
+    url("../brand/products/seed-bank-shelf.png") center top / cover no-repeat;
 }
 
 .showcasePanel.promoTheme {
   background: 
     linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7)),
-    url("/brand/products/wheat-field.png") center / cover no-repeat;
+    url("../brand/products/wheat-field.png") center / cover no-repeat;
   border: none;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(15, 74, 43, 0.3);
@@ -1087,7 +1087,7 @@ button {
   background:
     linear-gradient(130deg, rgba(74, 35, 35, 0.82), rgba(21, 83, 49, 0.76) 46%, rgba(192, 132, 54, 0.46)),
     linear-gradient(0deg, rgba(81, 51, 31, 0.86) 0%, rgba(122, 89, 49, 0.72) 23%, rgba(231, 189, 103, 0.32) 47%, rgba(32, 75, 44, 0.74) 100%),
-    url("/brand/products/wheat-field.png") center / cover no-repeat;
+    url("../brand/products/wheat-field.png") center / cover no-repeat;
 }
 
 
@@ -1164,7 +1164,7 @@ button {
   border-radius: 8px;
   background: 
     linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7)),
-    url("/brand/products/wheat-field.png") center / cover no-repeat;
+    url("../brand/products/wheat-field.png") center / cover no-repeat;
   color: #fffaf0;
   text-align: center;
   padding: clamp(24px, 3.4vw, 46px);
