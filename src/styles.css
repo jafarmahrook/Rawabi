@@ -264,12 +264,57 @@ button {
 
 .startLayout {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(340px, 0.8fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   gap: clamp(14px, 2vw, 24px);
   min-height: 0;
 }
 
-@media (max-width: 1200px) {
+/* Tablets: tighter two-column layout */
+@media (min-width: 601px) and (max-width: 1200px) {
+  .startLayout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+    gap: clamp(10px, 1.5vw, 16px);
+    align-items: start;
+  }
+  .startLayout .heroPanel {
+    padding: clamp(12px, 2vw, 20px);
+    padding-top: clamp(14px, 2.5vh, 22px);
+    padding-bottom: clamp(14px, 2.5vh, 22px);
+  }
+  .startLayout .heroHeader {
+    margin-bottom: clamp(8px, 1.5vh, 16px);
+  }
+  .startLayout .heroHeader h2 {
+    font-size: clamp(22px, 3vw, 34px);
+  }
+  .startLayout .guideSteps {
+    gap: clamp(10px, 1.5vw, 20px);
+  }
+  .startLayout .stepIcon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+  .startLayout .statsStrip {
+    gap: 8px;
+  }
+  .startLayout .stat {
+    min-height: 60px;
+    padding: 8px 12px;
+  }
+  .startLayout .showcasePanel {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  .startLayout .miniShelf {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    max-height: none;
+  }
+}
+
+/* Phones only: stack to single column */
+@media (max-width: 600px) {
   .startLayout {
     grid-template-columns: 1fr;
     overflow-y: auto;
@@ -1915,10 +1960,16 @@ button {
 /* ---- Portrait tablets & narrow screens: single-column stack ---- */
 @media (orientation: portrait), (max-width: 900px) {
   .gameShell,
-  .startLayout,
   .playLayout,
   .finishLayout {
     grid-template-columns: 1fr;
+  }
+
+  /* startLayout stays 2-column on tablets, stacks only on phones */
+  @media (max-width: 600px) {
+    .startLayout {
+      grid-template-columns: 1fr;
+    }
   }
 
   .finishLayout {
