@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FluentEmoji } from "@lobehub/fluent-emoji";
-import type { CSSProperties } from "react";
+import { Component, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { CSSProperties, ErrorInfo, ReactNode } from "react";
 
 type IngredientId =
   | "wheat"
@@ -308,11 +307,63 @@ function App() {
   const sortedResults = useMemo(() => [...results].sort((a, b) => b.score - a.score), [results]);
   const highScore = sortedResults[0]?.score ?? 0;
 
+  const [assetsReady, setAssetsReady] = useState(false);
+
   useEffect(() => {
-    products.forEach((product) => {
-      if (product.image) new Image().src = product.image;
-      if (product.cutout) new Image().src = product.cutout;
+    let cancelled = false;
+
+    // Helper to load a single image with timeout
+    const loadImg = (src: string) =>
+      new Promise<void>((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => resolve(); // don't block on failure
+        img.src = src;
+      });
+
+    // Phase 1: Load the 3 CSS background images (723KB total)
+    // These are the critical decorative images — load them lazily after first paint
+    const bgImages = [
+      { src: "brand/products/wheat-field.png", varName: "--bg-wheat" },
+      { src: "brand/products/hero-field-products.png", varName: "--bg-hero" },
+      { src: "brand/products/seed-bank-shelf.png", varName: "--bg-shelf" },
+    ];
+
+    const bgPromises = bgImages.map(({ src, varName }) =>
+      loadImg(src).then(() => {
+        if (!cancelled) {
+          document.documentElement.style.setProperty(varName, `url(${src})`);
+        }
+      })
+    );
+
+    // When all BG images are loaded, add bgLoaded class to trigger CSS transitions
+    Promise.race([
+      Promise.all(bgPromises),
+      new Promise((r) => setTimeout(r, 6000)), // 6s max wait
+    ]).then(() => {
+      if (cancelled) return;
+      document.querySelectorAll(
+        ".ambient, .heroPanel, .showcasePanel, .finishShelf, .promoPanel"
+      ).forEach((el) => el.classList.add("bgLoaded"));
     });
+
+    // Phase 2: Preload product images during idle time (non-blocking)
+    const preloadProducts = () => {
+      products.forEach((product) => {
+        if (product.image) loadImg(product.image);
+        if (product.cutout) loadImg(product.cutout);
+      });
+      if (!cancelled) setAssetsReady(true);
+    };
+
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(preloadProducts, { timeout: 3000 });
+    } else {
+      setTimeout(preloadProducts, 200);
+    }
+
+    return () => { cancelled = true; };
   }, []);
   const isHarvest = screen === "playing" && secondsLeft <= 10;
   const multiplier = productStreak >= 3 ? 2 : 1;
@@ -822,7 +873,7 @@ function ProductPack({
           <div className="packLabel">
             <OfficialLogo small />
             <span className="productEmoji" style={{ fontSize: "24px", margin: "4px 0" }}>
-              <FluentEmoji emoji={product.icon} type="3d" />
+              {product.icon}
             </span>
             <strong>{product.name}</strong>
             <span>{product.english}</span>
@@ -841,7 +892,7 @@ function ProductPack({
 function IngredientGlyph({ ingredient }: { ingredient: Ingredient }) {
   return (
     <i className="emojiGlyph" style={{ "--tone": ingredient.tone } as CSSProperties}>
-      <FluentEmoji emoji={ingredient.icon} type="3d" />
+      <span className="nativeEmoji">{ingredient.icon}</span>
     </i>
   );
 }
@@ -868,4 +919,56 @@ function AmbientScene() {
   );
 }
 
-export default App;
+type ErrorBoundaryProps = { children: ReactNode };
+type ErrorBoundaryState = { hasError: boolean };
+
+class AppErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.error("[Rawabi Game Error]", error, info.componentStack);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{
+          display: "grid", placeItems: "center", minHeight: "100vh",
+          background: "#0c321f", color: "#fffaf0", fontFamily: "inherit",
+          textAlign: "center", padding: "24px",
+        }}>
+          <div>
+            <h2 style={{ fontSize: "28px", marginBottom: "12px" }}>حدث خطأ غير متوقع</h2>
+            <p style={{ opacity: 0.8, marginBottom: "20px" }}>يرجى إعادة تحميل الصفحة</p>
+            <button
+              onClick={() => window.location.reload()}
+              style={{
+                padding: "12px 32px", fontSize: "16px", fontWeight: 800,
+                color: "#0c321f", background: "#c49a42", border: "none",
+                borderRadius: "8px", cursor: "pointer",
+              }}
+            >
+              إعادة تحميل
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+export default function WrappedApp() {
+  return (
+    <AppErrorBoundary>
+      <App />
+    </AppErrorBoundary>
+  );
+}

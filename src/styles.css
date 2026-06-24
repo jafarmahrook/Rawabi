@@ -68,8 +68,15 @@ button {
   z-index: -2;
   background:
     linear-gradient(130deg, rgba(12, 50, 31, 0.9), rgba(18, 63, 40, 0.78) 42%, rgba(123, 59, 47, 0.52)),
+    linear-gradient(0deg, rgba(81, 51, 31, 0.86) 0%, rgba(122, 89, 49, 0.72) 23%, rgba(231, 189, 103, 0.32) 47%, rgba(32, 75, 44, 0.74) 100%);
+  background-size: cover;
+}
+
+.ambient.bgLoaded {
+  background:
+    linear-gradient(130deg, rgba(12, 50, 31, 0.9), rgba(18, 63, 40, 0.78) 42%, rgba(123, 59, 47, 0.52)),
     linear-gradient(0deg, rgba(81, 51, 31, 0.86) 0%, rgba(122, 89, 49, 0.72) 23%, rgba(231, 189, 103, 0.32) 47%, rgba(32, 75, 44, 0.74) 100%),
-    url("../brand/products/wheat-field.png") center / cover no-repeat;
+    var(--bg-wheat) center / cover no-repeat;
 }
 
 .ambient::before {
@@ -313,8 +320,13 @@ button {
   padding-bottom: clamp(20px, 4vh, 36px);
   overflow: hidden;
   background:
+    linear-gradient(105deg, rgba(255, 250, 240, 0.98) 0%, rgba(248, 238, 209, 0.95) 52%, rgba(217, 161, 65, 0.34) 100%);
+}
+
+.heroPanel.bgLoaded {
+  background:
     linear-gradient(105deg, rgba(255, 250, 240, 0.98) 0%, rgba(248, 238, 209, 0.95) 52%, rgba(217, 161, 65, 0.34) 100%),
-    url("../brand/products/hero-field-products.png") left bottom / min(52%, 520px) auto no-repeat;
+    var(--bg-hero) left bottom / min(52%, 520px) auto no-repeat;
 }
 
 .heroTopRightLogo {
@@ -612,17 +624,28 @@ button {
   min-height: 0;
   padding: 18px;
   background:
+    linear-gradient(180deg, rgba(255, 250, 240, 0.94), rgba(246, 232, 199, 0.9));
+}
+
+.showcasePanel.bgLoaded,
+.finishShelf.bgLoaded {
+  background:
     linear-gradient(180deg, rgba(255, 250, 240, 0.94), rgba(246, 232, 199, 0.9)),
-    url("../brand/products/seed-bank-shelf.png") center top / cover no-repeat;
+    var(--bg-shelf) center top / cover no-repeat;
 }
 
 .showcasePanel.promoTheme {
   background: 
-    linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7)),
-    url("../brand/products/wheat-field.png") center / cover no-repeat;
+    linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7));
   border: none;
   border-radius: 16px;
   box-shadow: 0 12px 32px rgba(15, 74, 43, 0.3);
+}
+
+.showcasePanel.promoTheme.bgLoaded {
+  background: 
+    linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7)),
+    var(--bg-wheat) center / cover no-repeat;
 }
 
 .shelfTitle {
@@ -1086,8 +1109,14 @@ button {
 .isHarvest .ambient {
   background:
     linear-gradient(130deg, rgba(74, 35, 35, 0.82), rgba(21, 83, 49, 0.76) 46%, rgba(192, 132, 54, 0.46)),
+    linear-gradient(0deg, rgba(81, 51, 31, 0.86) 0%, rgba(122, 89, 49, 0.72) 23%, rgba(231, 189, 103, 0.32) 47%, rgba(32, 75, 44, 0.74) 100%);
+}
+
+.isHarvest .ambient.bgLoaded {
+  background:
+    linear-gradient(130deg, rgba(74, 35, 35, 0.82), rgba(21, 83, 49, 0.76) 46%, rgba(192, 132, 54, 0.46)),
     linear-gradient(0deg, rgba(81, 51, 31, 0.86) 0%, rgba(122, 89, 49, 0.72) 23%, rgba(231, 189, 103, 0.32) 47%, rgba(32, 75, 44, 0.74) 100%),
-    url("../brand/products/wheat-field.png") center / cover no-repeat;
+    var(--bg-wheat) center / cover no-repeat;
 }
 
 
@@ -1163,12 +1192,17 @@ button {
   overflow: hidden;
   border-radius: 8px;
   background: 
-    linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7)),
-    url("../brand/products/wheat-field.png") center / cover no-repeat;
+    linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7));
   color: #fffaf0;
   text-align: center;
   padding: clamp(24px, 3.4vw, 46px);
   box-shadow: 0 22px 52px rgba(0, 0, 0, 0.22);
+}
+
+.promoPanel.bgLoaded {
+  background: 
+    linear-gradient(to top, rgba(15, 74, 43, 0.95), rgba(15, 74, 43, 0.7)),
+    var(--bg-wheat) center / cover no-repeat;
 }
 
 .sectionTitle {
@@ -1301,6 +1335,10 @@ button {
   height: clamp(230px, 31vh, 360px);
   margin: 0 auto;
   color: var(--green-900);
+  /* fallback for browsers without color-mix */
+  background:
+    linear-gradient(135deg, var(--pack), var(--pack)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.08));
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--pack), white 22%), var(--pack)),
     linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.08));
@@ -1371,6 +1409,10 @@ button {
 
 .productPack.hasPhoto {
   display: block;
+  /* fallback for browsers without color-mix */
+  background:
+    radial-gradient(circle at center 28%, rgba(255, 255, 255, 0.92), rgba(255, 250, 240, 0.62) 48%, rgba(124, 78, 46, 0.18) 100%),
+    linear-gradient(135deg, var(--pack), var(--pack));
   background:
     radial-gradient(circle at center 28%, rgba(255, 255, 255, 0.92), rgba(255, 250, 240, 0.62) 48%, rgba(124, 78, 46, 0.18) 100%),
     linear-gradient(135deg, color-mix(in srgb, var(--pack), white 30%), var(--pack));
@@ -1520,6 +1562,8 @@ button {
   padding: 8px 10px;
   color: #fff8e5;
   text-align: center;
+  /* fallback for browsers without color-mix */
+  background: linear-gradient(135deg, var(--accent, #15150f), rgba(15, 74, 43, 0.92));
   background: linear-gradient(135deg, color-mix(in srgb, var(--accent), #15150f 18%), rgba(15, 74, 43, 0.92));
   border: 1px solid rgba(255, 250, 240, 0.24);
   border-radius: 7px;
@@ -1650,6 +1694,8 @@ button {
   min-height: 42%;
   padding: 12px 10px;
   color: #fff9e9;
+  /* fallback for browsers without color-mix */
+  background: var(--accent, #1c1d16);
   background: color-mix(in srgb, var(--accent), #1c1d16 8%);
   border-radius: 7px;
   text-align: center;
@@ -1720,11 +1766,22 @@ button {
   width: 46px;
   height: 46px;
   background: rgba(255, 250, 240, 0.82);
+  /* fallback for browsers without color-mix */
+  border: 2px solid var(--tone, #555);
   border: 2px solid color-mix(in srgb, var(--tone), #111 10%);
   border-radius: 50%;
   box-shadow: inset 0 -7px 0 rgba(0, 0, 0, 0.06);
   font-style: normal;
   font-size: 24px;
+}
+
+.nativeEmoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  line-height: 1;
+  font-style: normal;
 }
 
 @keyframes shake {

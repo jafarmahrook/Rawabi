@@ -7,7 +7,27 @@
     <title>خبير المونة - روابي فرح</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="splash" style="
+        display:grid;place-items:center;min-height:100vh;min-height:100dvh;
+        background:linear-gradient(135deg,#0c321f,#123f28);
+        color:#fffaf0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;
+        text-align:center;padding:24px;
+      ">
+        <div>
+          <div style="font-size:48px;margin-bottom:16px;">🌾</div>
+          <h1 style="font-size:clamp(24px,5vw,36px);margin:0 0 8px;font-weight:950;color:#fff8e5;">خبير المونة</h1>
+          <p style="font-size:14px;color:#c49a42;font-weight:700;margin:0 0 24px;">روابي فرح</p>
+          <div style="
+            width:40px;height:40px;margin:0 auto;
+            border:3px solid rgba(196,154,66,0.3);
+            border-top-color:#c49a42;border-radius:50%;
+            animation:sp .7s linear infinite;
+          "></div>
+        </div>
+      </div>
+      <style>@keyframes sp{to{transform:rotate(360deg)}}</style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
