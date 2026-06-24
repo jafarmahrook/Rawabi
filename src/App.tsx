@@ -543,6 +543,7 @@ type StartProps = {
 
 function StartScreen({ playerName, setPlayerName, highScore, sortedResults, startGame }: StartProps) {
   return (
+    <>
     <div className="startLayout">
       <section className="heroPanel">
         <div className="heroHeader">
@@ -550,57 +551,50 @@ function StartScreen({ playerName, setPlayerName, highScore, sortedResults, star
           <h2>اكسر الرقم في <span className="highlightTime">60 ثانية</span></h2>
           <p className="heroLine">جهز منتجات روابي فرح بسرعة، واربط المكوّن الصحيح بالعبوة الصحيحة.</p>
         </div>
-        <div className="heroLayoutSplit">
-          <div className="heroActionColumn">
-            
-            <div className="gameGuide">
-              <h4 className="guideTitle">🎁 العب واربح كود خصم حصري!</h4>
-              <div className="guideSteps">
-                <div className="guideStep">
-                  <span className="stepIcon">🧐</span>
-                  <span className="stepText">1. اقرأ المكوّن</span>
-                </div>
-                <div className="guideStep">
-                  <span className="stepIcon">🎯</span>
-                  <span className="stepText">2. طابقه بالمنتج</span>
-                </div>
-                <div className="guideStep">
-                  <span className="stepIcon">🎉</span>
-                  <span className="stepText">3. اكسب الخصم</span>
-                </div>
-              </div>
-            </div>
 
-            <form
-              className="startForm"
-              onSubmit={(event) => {
-                event.preventDefault();
-                startGame();
-              }}
-            >
-              <label htmlFor="playerName">اسم اللاعب</label>
-              <div className="nameRow">
-                <div className="inputWrapper">
-                  <span className="inputIcon">👤</span>
-                  <input
-                    id="playerName"
-                    value={playerName}
-                    maxLength={18}
-                    onChange={(event) => setPlayerName(event.target.value)}
-                    placeholder="اكتب اسمك"
-                    autoComplete="off"
-                  />
-                </div>
-                <button type="submit">
-                  ابدأ التحدي <span className="btnIcon">🚀</span>
-                </button>
-              </div>
-            </form>
-          </div>
-          <div className="heroLeaderboardColumn">
-            <Leaderboard results={sortedResults} />
+        <div className="gameGuide">
+          <h4 className="guideTitle">🎁 العب واربح كود خصم حصري!</h4>
+          <div className="guideSteps">
+            <div className="guideStep">
+              <span className="stepIcon">🧐</span>
+              <span className="stepText">1. اقرأ المكوّن</span>
+            </div>
+            <div className="guideStep">
+              <span className="stepIcon">🎯</span>
+              <span className="stepText">2. طابقه بالمنتج</span>
+            </div>
+            <div className="guideStep">
+              <span className="stepIcon">🎉</span>
+              <span className="stepText">3. اكسب الخصم</span>
+            </div>
           </div>
         </div>
+
+        <form
+          className="startForm"
+          onSubmit={(event) => {
+            event.preventDefault();
+            startGame();
+          }}
+        >
+          <label htmlFor="playerName">اسم اللاعب</label>
+          <div className="nameRow">
+            <div className="inputWrapper">
+              <span className="inputIcon">👤</span>
+              <input
+                id="playerName"
+                value={playerName}
+                maxLength={18}
+                onChange={(event) => setPlayerName(event.target.value)}
+                placeholder="اكتب اسمك"
+                autoComplete="off"
+              />
+            </div>
+            <button type="submit">
+              ابدأ التحدي <span className="btnIcon">🚀</span>
+            </button>
+          </div>
+        </form>
       </section>
 
       <aside className="showcasePanel promoTheme">
@@ -623,6 +617,9 @@ function StartScreen({ playerName, setPlayerName, highScore, sortedResults, star
         </div>
       </aside>
     </div>
+
+    <Leaderboard results={sortedResults} />
+    </>
   );
 }
 
