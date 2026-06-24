@@ -543,60 +543,65 @@ type StartProps = {
 
 function StartScreen({ playerName, setPlayerName, highScore, sortedResults, startGame }: StartProps) {
   return (
-    <>
     <div className="startLayout">
-      <section className="heroPanel">
-        <div className="heroHeader">
-          <p className="heroSubtitle">لعبة خبير المونة من روابي الفرح</p>
-          <h2>اكسر الرقم في <span className="highlightTime">60 ثانية</span></h2>
-          <p className="heroLine">جهز منتجات روابي فرح بسرعة، واربط المكوّن الصحيح بالعبوة الصحيحة.</p>
-        </div>
+      {/* Left column: hero + leaderboard stacked */}
+      <div className="startLeftCol">
+        <section className="heroPanel">
+          <div className="heroHeader">
+            <p className="heroSubtitle">لعبة خبير المونة من روابي الفرح</p>
+            <h2>اكسر الرقم في <span className="highlightTime">60 ثانية</span></h2>
+            <p className="heroLine">جهز منتجات روابي فرح بسرعة، واربط المكوّن الصحيح بالعبوة الصحيحة.</p>
+          </div>
 
-        <div className="gameGuide">
-          <h4 className="guideTitle">🎁 العب واربح كود خصم حصري!</h4>
-          <div className="guideSteps">
-            <div className="guideStep">
-              <span className="stepIcon">🧐</span>
-              <span className="stepText">1. اقرأ المكوّن</span>
-            </div>
-            <div className="guideStep">
-              <span className="stepIcon">🎯</span>
-              <span className="stepText">2. طابقه بالمنتج</span>
-            </div>
-            <div className="guideStep">
-              <span className="stepIcon">🎉</span>
-              <span className="stepText">3. اكسب الخصم</span>
+          <div className="gameGuide">
+            <h4 className="guideTitle">🎁 العب واربح كود خصم حصري!</h4>
+            <div className="guideSteps">
+              <div className="guideStep">
+                <span className="stepIcon">🧐</span>
+                <span className="stepText">1. اقرأ المكوّن</span>
+              </div>
+              <div className="guideStep">
+                <span className="stepIcon">🎯</span>
+                <span className="stepText">2. طابقه بالمنتج</span>
+              </div>
+              <div className="guideStep">
+                <span className="stepIcon">🎉</span>
+                <span className="stepText">3. اكسب الخصم</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <form
-          className="startForm"
-          onSubmit={(event) => {
-            event.preventDefault();
-            startGame();
-          }}
-        >
-          <label htmlFor="playerName">اسم اللاعب</label>
-          <div className="nameRow">
-            <div className="inputWrapper">
-              <span className="inputIcon">👤</span>
-              <input
-                id="playerName"
-                value={playerName}
-                maxLength={18}
-                onChange={(event) => setPlayerName(event.target.value)}
-                placeholder="اكتب اسمك"
-                autoComplete="off"
-              />
+          <form
+            className="startForm"
+            onSubmit={(event) => {
+              event.preventDefault();
+              startGame();
+            }}
+          >
+            <label htmlFor="playerName">اسم اللاعب</label>
+            <div className="nameRow">
+              <div className="inputWrapper">
+                <span className="inputIcon">👤</span>
+                <input
+                  id="playerName"
+                  value={playerName}
+                  maxLength={18}
+                  onChange={(event) => setPlayerName(event.target.value)}
+                  placeholder="اكتب اسمك"
+                  autoComplete="off"
+                />
+              </div>
+              <button type="submit">
+                ابدأ التحدي <span className="btnIcon">🚀</span>
+              </button>
             </div>
-            <button type="submit">
-              ابدأ التحدي <span className="btnIcon">🚀</span>
-            </button>
-          </div>
-        </form>
-      </section>
+          </form>
+        </section>
 
+        <Leaderboard results={sortedResults} />
+      </div>
+
+      {/* Right column: products (matches left column height, scrolls internally) */}
       <aside className="showcasePanel promoTheme">
         <div className="promoContent">
           <div className="promoLogoBox">
@@ -617,9 +622,6 @@ function StartScreen({ playerName, setPlayerName, highScore, sortedResults, star
         </div>
       </aside>
     </div>
-
-    <Leaderboard results={sortedResults} />
-    </>
   );
 }
 

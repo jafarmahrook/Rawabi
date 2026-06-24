@@ -264,17 +264,41 @@ button {
 
 .startLayout {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
   gap: clamp(14px, 2vw, 24px);
   min-height: 0;
+}
+
+/* Left column: hero + leaderboard stacked */
+.startLeftCol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 18px);
+  min-height: 0;
+}
+
+/* Right column: match left column height, scroll internally */
+.startLayout > .showcasePanel {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.startLayout > .showcasePanel > .miniShelf {
+  flex: 1;
+  overflow-y: auto;
+  max-height: none;
 }
 
 /* Tablets: tighter two-column layout */
 @media (min-width: 601px) and (max-width: 1200px) {
   .startLayout {
-    grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(200px, 0.9fr);
     gap: clamp(10px, 1.5vw, 16px);
-    align-items: start;
+  }
+  .startLeftCol {
+    gap: clamp(8px, 1.2vw, 14px);
   }
   .startLayout .heroPanel {
     padding: clamp(12px, 2vw, 20px);
@@ -302,14 +326,12 @@ button {
     min-height: 60px;
     padding: 8px 12px;
   }
-  .startLayout .showcasePanel {
-    max-height: 100%;
-    overflow-y: auto;
+  .startLayout .leaderboard {
+    padding: clamp(14px, 2vh, 20px) clamp(12px, 1.5vw, 18px);
   }
   .startLayout .miniShelf {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
-    max-height: none;
   }
 }
 
@@ -320,10 +342,14 @@ button {
     overflow-y: auto;
     padding-bottom: 24px;
   }
-  .startLayout .showcasePanel {
+  .startLeftCol {
+    gap: 12px;
+  }
+  .startLayout > .showcasePanel {
     max-width: 600px;
     margin: 0 auto;
     width: 100%;
+    max-height: 400px;
   }
 }
 
